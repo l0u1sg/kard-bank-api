@@ -5,5 +5,8 @@
     "main": "index.js",
     "repository": "https://github.com/l0u1sg/kard-bank-api.git",
     "author": "Louis GALLET <louis.gallet@tumo.world>",
-    "license": "MIT"
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^0.21.1"
+    }
 }
