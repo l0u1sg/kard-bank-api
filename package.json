@@ -1,6 +1,6 @@
 {
     "name": "kard-bank-api",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": " NodeJS module to make requests on the API of the neo-bank Kard ",
     "main": "index.js",
     "repository": "https://github.com/l0u1sg/kard-bank-api.git",
