@@ -32,11 +32,11 @@ exports.login = function (number, accessCode) {
                         input: {
                             phoneNumber: number,
                             code: otp,
-                            platform: "ANDROID",
                             vendorIdentifier: "android:is-that-a-uuid",
                         }
                     },
                     query: "mutation VerifyOtp($input: VerifyOTPInput!) {\n  verifyOtp(input: $input) {\n    challenge\n    accessToken\n    refreshToken\n    errors {\n      message\n      path\n      __typename\n    }\n    __typename\n  }\n}\n"
+                    /* query: 'mutation androidVerifyOTP($authenticationProvider: AuthenticationProviderInput, $code: String!, $phoneNumber: PhoneNumber!, $vendorIdentifier: String!) { verifyOtp(input: {authenticationProvider: $authenticationProvider, code: $code, phoneNumber: $phoneNumber, vendorIdentifier: $vendorIdentifier}) { challenge accessToken refreshToken errors { path message } }}' */
                 }).then(function (response) {
                     console.log(response.data)
                 }).catch(function (error) {
@@ -44,11 +44,15 @@ exports.login = function (number, accessCode) {
                 })
 
             })
+        } else if (response.data.data.initSession.challenge === "PASSCODE") {
+
         } else {
-            console.log("error");
+            console.log(response)
         }
+        let TOKEN
     })
         .catch(function (error) {
             console.log(error);
         });
+
 }
