@@ -7,6 +7,7 @@
     "author": "Louis GALLET <louis.gallet@tumo.world>",
     "license": "MIT",
     "dependencies": {
-        "axios": "^0.21.1"
+        "axios": "^0.21.1",
+        "readline": "^1.3.0"
     }
 }

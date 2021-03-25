@@ -1,7 +1,13 @@
 const Axios = require('axios')
+const readLine = require('readline')
 exports.printMsg = function () {
     console.log("This is a message from the demo package");
 }
+let rl = readLine.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
 
 exports.login = function (number, accessCode) {
     Axios.post('https://api.kard.eu/graphql', {
@@ -16,7 +22,31 @@ exports.login = function (number, accessCode) {
         },
         query: "mutation InitSession($input: InitSessionInput!) {\n  initSession(input: $input) {\n    challenge\n    expiresAt\n    errors {\n      message\n      path\n      __typename\n    }\n    __typename\n  }\n}\n"
     }).then(function (response) {
-        console.log(response);
+        if (response.data.data.initSession.challenge === "OTP") {
+            rl.question("You need to confirm OTP code sent to " + number + " : ", function (answer) {
+                let otp = answer
+                rl.close()
+                Axios.post('https://api.kard.eu/graphql', {
+                    operationName: "VerifyOtp",
+                    variables: {
+                        input: {
+                            phoneNumber: number,
+                            code: otp,
+                            platform: "ANDROID",
+                            vendorIdentifier: "android:is-that-a-uuid",
+                        }
+                    },
+                    query: "mutation VerifyOtp($input: VerifyOTPInput!) {\n  verifyOtp(input: $input) {\n    challenge\n    accessToken\n    refreshToken\n    errors {\n      message\n      path\n      __typename\n    }\n    __typename\n  }\n}\n"
+                }).then(function (response) {
+                    console.log(response.data)
+                }).catch(function (error) {
+                    console.log(error)
+                })
+
+            })
+        } else {
+            console.log("error");
+        }
     })
         .catch(function (error) {
             console.log(error);
