@@ -22,6 +22,7 @@ exports.login = function (number, accessCode) {
         },
         query: "mutation InitSession($input: InitSessionInput!) {\n  initSession(input: $input) {\n    challenge\n    expiresAt\n    errors {\n      message\n      path\n      __typename\n    }\n    __typename\n  }\n}\n"
     }).then(function (response) {
+        console.log(response.data.data)
         if (response.data.data.initSession.challenge === "OTP") {
             rl.question("You need to confirm OTP code sent to " + number + " : ", function (answer) {
                 let otp = answer
@@ -44,14 +45,14 @@ exports.login = function (number, accessCode) {
 
             })
         } else if (response.data.data.initSession.challenge === "PASSCODE") {
-
+            console.log("Kard indique : Aucune demande de validation n'est necessaire.")
         } else {
             console.log(response)
         }
-        let TOKEN
+        /* let TOKEN
         Axios.post('https://api.kard.eu/graphql'), {
             operationName: ""
-        }
+        } */
     })
         .catch(function (error) {
             console.log(error);
