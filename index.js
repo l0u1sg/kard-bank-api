@@ -49,6 +49,9 @@ exports.login = function (number, accessCode) {
             console.log(response)
         }
         let TOKEN
+        Axios.post('https://api.kard.eu/graphql'), {
+            operationName: ""
+        }
     })
         .catch(function (error) {
             console.log(error);
