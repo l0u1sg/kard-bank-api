@@ -36,7 +36,6 @@ exports.login = function (number, accessCode) {
                         }
                     },
                     query: "mutation VerifyOtp($input: VerifyOTPInput!) {\n  verifyOtp(input: $input) {\n    challenge\n    accessToken\n    refreshToken\n    errors {\n      message\n      path\n      __typename\n    }\n    __typename\n  }\n}\n"
-                    /* query: 'mutation androidVerifyOTP($authenticationProvider: AuthenticationProviderInput, $code: String!, $phoneNumber: PhoneNumber!, $vendorIdentifier: String!) { verifyOtp(input: {authenticationProvider: $authenticationProvider, code: $code, phoneNumber: $phoneNumber, vendorIdentifier: $vendorIdentifier}) { challenge accessToken refreshToken errors { path message } }}' */
                 }).then(function (response) {
                     console.log(response.data)
                 }).catch(function (error) {
