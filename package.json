@@ -1,0 +1,16 @@
+{
+  "name": "kard-bank-api-intern",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://l0u1sg@github.com/l0u1sg/kard-bank-api-intern.git",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "graphql": "^15.7.1",
+    "graphql-request": "^3.6.1"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "devDependencies": {}
+}
