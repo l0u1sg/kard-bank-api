@@ -2,7 +2,7 @@ const ggraphqlRequest = require('graphql-request')
 require('dotenv').config()
 
 module.exports = async function fetchBalance() {
-    const endpoint = 'https://staging.kard.eu/graphql'
+    const endpoint = process.env.ENDPOINT
     const graphQLClient = new ggraphqlRequest.GraphQLClient(endpoint, {
         headers: {
             Authorization: `Bearer ${process.env.KARD_TOKEN}`
