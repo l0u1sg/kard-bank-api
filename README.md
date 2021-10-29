@@ -23,3 +23,5 @@ The following functions are available:
     fetchBalance 		=> Know the remaining balance on the Kard
     fetchID				=> Know your internal Kard ID
     fetchTransaction	=> See the latest transactions between two date
+    cashBackOffers		=> See current cashback offers
+    askParentForMoney 	=> Ask parents for money

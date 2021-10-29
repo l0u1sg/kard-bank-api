@@ -8,7 +8,9 @@ const createVault = require('./functions/createVault')
 const fetchBalance = require('./functions/fetchBalance')
 const fetchTransaction = require('./functions/fetchTransaction')
 const cashBackOffers = require('./functions/cashBackOffers')
-const questionEndpoint = ["id", "createVault", "fetchBalance", "fetchTransaction", "cashBackOffers"]
+const askParentForMoney = require('./functions/askParentForMoney');
+const { resolve } = require('path');
+const questionEndpoint = ["id", "createVault", "fetchBalance", "fetchTransaction", "cashBackOffers", "askParentForMoney"]
 
 console.log("Fonctionnalités disponible : " + questionEndpoint)
 rl.question("What do you want to fetch/do ", function(action) {
@@ -59,6 +61,16 @@ rl.question("What do you want to fetch/do ", function(action) {
     if (action == questionEndpoint[4]) {
         cashBackOffers().catch((error) => console.log(error))
         rl.close()
+    }
+    if (action == questionEndpoint[5]) {
+        rl.question("Combien veux-tu demander d'argent ?", function(amountValue) {
+            rl.question("Quelle est la raison de cette demande ?", function(reason) {
+                askParentForMoney(amountValue, reason).catch((error) => console.log(error))
+                rl.close()
+            })
+
+        })
+        
     }
 })
 
