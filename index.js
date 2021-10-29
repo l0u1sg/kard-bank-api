@@ -31,18 +31,18 @@ rl.question("What do you want to fetch/do ", function(action) {
         rl.close()
     }
     if (action == questionEndpoint[3]) {
-        rl.question("Selctionner la date de début (format ISO Date, exemple 2021-05-29 ", function(fromDate){
-            rl.question("Selectionner une date de fin (également au format ISO) ", function(toDate){
+        rl.question("Select the start date (ISO Date format, example 2021-05-29 ", function(fromDate){
+            rl.question("Select an end date (also in ISO format) ", function(toDate){
                 rl.question("Do you know you userID ? (yes or no) ", function(searchID) {
                     if (searchID == "yes") {
-                        rl.question("Collez ici votre userID ", function(userID) {
+                        rl.question("Paste your userID here ", function(userID) {
                             fetchTransaction(fromDate, toDate, userID).catch((error) => console.log(error))
                             rl.close()
                         })
                     } else if (searchID == "no") {
-                        console.log("Copiez votre UserID ci-dessous")
+                        console.log("Copy your UserID below")
                         fetchID().catch((error) => console.log(error))
-                        rl.question("Collez ici votre userID", function(userID){
+                        rl.question("Paste your userID here", function(userID){
                             fetchTransaction(fromDate, toDate, userID).catch((error) => console.log(error))
                             rl.close()
                         })
