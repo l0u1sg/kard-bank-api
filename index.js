@@ -7,7 +7,8 @@ const fetchID = require('./functions/fetchID')
 const createVault = require('./functions/createVault')
 const fetchBalance = require('./functions/fetchBalance')
 const fetchTransaction = require('./functions/fetchTransaction')
-const questionEndpoint = ["id", "createVault", "fetchBalance", "fetchTransaction"]
+const cashBackOffers = require('./functions/cashBackOffers')
+const questionEndpoint = ["id", "createVault", "fetchBalance", "fetchTransaction", "cashBackOffers"]
 
 console.log("Fonctionnalités disponible : " + questionEndpoint)
 rl.question("What do you want to fetch/do ", function(action) {
@@ -54,6 +55,10 @@ rl.question("What do you want to fetch/do ", function(action) {
             })
         })
         
+    }
+    if (action == questionEndpoint[4]) {
+        cashBackOffers().catch((error) => console.log(error))
+        rl.close()
     }
 })
 
